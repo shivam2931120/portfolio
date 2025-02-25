@@ -41,7 +41,7 @@
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      min-width: 500px; 
+      min-width: 350px; 
       height: 50px;
       background-color: rgba(255, 255, 255, 0.9); 
       color: #333; 
@@ -99,7 +99,6 @@
       color: #fff; 
     }
 
-    /* Navbar Logo */
     .navbar .logo {
       font-size: 1.1rem; 
       font-weight: 600; 
@@ -200,48 +199,6 @@
     .project a:hover {
       text-decoration: dashed underline;
       text-shadow: #000000 0px 0px 1px;
-    }
-
-    /* Contact Form */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      padding: 15px;
-      border: 2px solid #ccc;
-      border-radius: 5px;
-      width: 96%;
-      transition: background-color 0.3s, color 0.3s, border-color 0.5s;
-    }
-    body.dark-mode .contact-form input,
-    body.dark-mode .contact-form textarea {
-      background-color: #000000;
-      color: #ffffff;
-      border-color: #666;
-    }
-    .contact-form button {
-      background-color: #000000;
-      color: white;
-      width: 15%;
-      align-self: center;
-      border: none;
-      padding: 15px;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .contact-form button:hover {
-      background-color: #0db37c;
-    }
-    #responseMessage {
-      margin-top: 10px;
-      font-weight: bold;
-      text-align: center;
-      font-family: 'Courier New', Courier, monospace;
-      
     }
 
     .theme-toggle {
@@ -376,7 +333,7 @@
       }
 
       .circular-images .image-item:nth-child(2) {
-        right: 15px; /* Adjust overlap distance */
+        right: 15px; 
         z-index: 2;
       }
 
@@ -630,7 +587,6 @@
         <a href="#about">About</a>
         <a href="#certifications">Certifications</a>
         <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
     </div>
   </nav>
 
@@ -709,7 +665,6 @@
       </div>
     </div>
 
-
     <section id="about" class="section">
       <h2>About Me</h2>
       <div class="text-stack">
@@ -718,7 +673,6 @@
       </div>
     </section>
 
-    
     <section id="certifications" class="section">
       <h2>Certifications</h2>
       <div class="certifications-grid">
@@ -768,8 +722,6 @@
         </div>
       </div>
     </section>
-
-    
 
     <section id="projects" class="section">
         <h2>Projects</h2>
@@ -844,7 +796,6 @@
           </div>
         </div>
       </section>
-      
     </div>
     <button class="theme-toggle" onclick="toggleTheme()">☀️</button>
   
@@ -874,31 +825,6 @@
         navbar.classList.remove('hidden');
       }
       lastScrollTop = scrollTop;
-    });
-
-    //Contact Form
-    document.getElementById("contactForm").addEventListener("submit", async function(event) {
-      event.preventDefault();
-    
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const message = document.getElementById("message").value;
-      const responseMessage = document.getElementById("responseMessage");
-    
-      try {
-        const response = await fetch("http://127.0.0.1:5000/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, message })
-        });
-    
-        const result = await response.json();
-        responseMessage.textContent = result.message;
-        responseMessage.style.color = result.success ? "green" : "red";
-      } catch (error) {
-        responseMessage.textContent = "Error submitting the form.";
-        responseMessage.style.color = "red";
-      }
     });
 
     const typedText = document.getElementById("typed-text");
@@ -949,9 +875,6 @@
       <a href="https://leetcode.com/u/Shivam2931120/" target="_blank">
         <img src="leetcode.png" alt="Leetcode">
       </a>
-      <!-- <a href="4C.pdf" target="_blank">
-        <img src="cv.png" alt="Resume">
-      </a> -->
     </div>
   </div>
 </body>
