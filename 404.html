@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <style>
+    body {
+      font-family: 'Trebuchet MS', sans-serif;
+      background: linear-gradient(#d16ba5, #e17497, #eb828b, #ee9183, #eda280, #f1ad7d, #f3b97b, #f3c67b, #f8d273, #fbdf6b, #f9ec64, #f4fb5f);
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 3rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+    a {
+      color: #ff4757;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #ff6b81;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>404 - Page Not Found</h1>
+  <p>Oops! The page you're looking for doesn't exist.</p>
+  <p>You tried to access: <strong id="invalid-url"></strong></p>
+  <p>Return to the <a href="/">homepage</a>.</p>
+
+  <script>
+    // Display the invalid URL
+    const invalidUrl = window.location.href;
+    document.getElementById("invalid-url").innerText = invalidUrl;
+  </script>
+</body>
+</html>
