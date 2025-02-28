@@ -167,7 +167,7 @@
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
     }
     .project {
@@ -576,6 +576,74 @@
       body.dark-mode .progress-bar {
         background-color: #ffffff;
       }
+
+      /* Media Queries for Mobile Devices */
+      @media (max-width: 768px) {
+        .navbar {
+          min-width: 90%;
+          height: 40px;
+          font-size: 0.9rem;
+        }
+        .navbar a {
+          padding: 10px;
+        }
+        .container {
+          margin: 80px auto 20px;
+          padding: 10px;
+        }
+        .section {
+          margin-bottom: 50px;
+          padding: 15px;
+        }
+        .text-stack p {
+          padding: 20px;
+          width: 90%;
+        }
+        .projects-grid {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        .project {
+          padding: 30px;
+        }
+        .marquee-item {
+          margin: 0 5px;
+          padding: 5px;
+        }
+        .marquee-item img {
+          height: 30px;
+        }
+        .marquee-item span {
+          font-size: 0.9rem;
+        }
+        .certifications-grid {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+        .certification img {
+          width: 100px;
+          height: 100px;
+        }
+        .certification span {
+          font-size: 0.9rem;
+        }
+        .theme-toggle {
+          bottom: 10px;
+          right: 10px;
+          padding: 10px;
+          font-size: 1.2rem;
+        }
+        .social-container {
+          bottom: 20px;
+          left: 10px;
+        }
+        .social-container .main-icon {
+          width: 50px;
+          height: 50px;
+        }
+        .social-links a {
+          width: 40px;
+          height: 40px;
+        }
+      }
   </style>
 </head>
 <body class="dark-mode">
@@ -755,7 +823,7 @@
           </div>
           <div class="project">
             <div class="circular-images">
-              <div class="image-item" style="right: 0px;">
+              <div class="image-item" style="right: 5px;">
                 <img src="flask.svg" alt="Flask">
               </div>
               <div class="image-item" style="right: 15px;">
@@ -809,7 +877,7 @@
           </div>
           <div class="project">
             <div class="circular-images">
-              <div class="image-item" style="right: 0px;">
+              <div class="image-item" style="right: 15px;">
                 <img src="html.png" alt="HTML">
               </div>
               <div class="image-item" style="right: 15px;">
