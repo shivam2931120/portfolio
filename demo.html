@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: sans-serif;
+background-color: #ecf0f3;
+outline: #ecf0f3;
+}
+.container
+{
+background-color: #ecf0f3;
+height: 140vh;
+width: 20vw;
+margin-top: 150px;
+margin-left: 600px;
+
+}
+.calculator
+{
+background-color: #ecf0f3;
+align-items: center;
+justify-content: center;
+padding: 50px;
+border: 3px #ecf0f3;
+border-radius: 30px;
+
+box-shadow: inset 5px 5px 12px #ffffff ,
+5px 5px 12px rgba(0,0,0,0.16);
+display: grid;
+grid-template-columns: auto auto auto;
+padding: 10px;
+
+}
+input{
+grid-column: span 4;
+height: 50px;
+width: 260px;
+background-color: rgb(221, 231, 231);
+border: 2px solid white;
+border-radius: 30px;
+box-shadow: inset 5px 5px 12px #ffffff ,
+5px 5px 12px rgba(0,0,0,0.16);
+font-size: 30px;
+text-align: end;
+margin: auto;
+margin-top: 35px;
+
+padding: 20px;
+margin-bottom: 15px;
+
+}
+
+button{
+
+height: 40px;
+width: 45px;
+margin: 10px;
+border: 2px solid white;
+border-radius: 30px;
+box-shadow: inset 5px 5px 12px #ffffff ,
+
+5px 5px 12px rgba(0,0,0,0.16);
+
+}
+.operator
+{
+background-color: #211c1c;
+color: #ecf0f3;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="calculator">
+
+<input type="text" name="output" id="result" placeholder="0">
+<button onclick="clr()" class="operator">clr</button>
+<button onclick="del()" class="operator">del</button>
+
+<button onclick="display('%')" class="operator" onkeydown="myFunction(event)">%</button>
+<button onclick="display('+')" class="operator" onkeydown="myFunction(event)">+</button>
+<button onclick="display('1')" onkeydown="myFunction(event)">1</button>
+<button onclick="display('2')" onkeydown="myFunction(event)">2</button>
+<button onclick="display('3')" onkeydown="myFunction(event)">3</button>
+<button onclick="display('-')" class="operator" >-</button>
+<button onclick="display('4')" onkeydown="myFunction(event)" >4</button>
+<button onclick="display('5')" onkeydown="myFunction(event)">5</button>
+<button onclick="display('6')" onkeydown="myFunction(event)">6</button>
+<button onclick="display('*')" class="operator" onkeydown="myFunction(event)" >*</button>
+<button onclick="display('7')" onkeydown="myFunction(event)">7</button>
+<button onclick="display('8')" onkeydown="myFunction(event)" >8</button>
+<button onclick="display('9')" onkeydown="myFunction(event)">9</button>
+<button onclick="display('/')" class="operator" onkeydown="myFunction(event)">/</button>
+
+<button onclick="display('0')" onkeydown="myFunction(event)">0</button>
+<button onclick="display('.')" onkeydown="myFunction(event)">.</button>
+<button onclick="solve()" class="equal">=</button>
+
+</div>
+</div>
+
+<script>
+let outputscreen=document.getElementById('result');
+
+function display(nums)
+{
+outputscreen.value+=nums;
+}
+
+// function myFunction(event) {
+// if (event.key == '0' || event.key == '1'
+// || event.key == '2' || event.key == '3'
+// || event.key == '4' || event.key == '5'
+// || event.key == '6' || event.key == '7'
+// || event.key == '8' || event.key == '9'
+// || event.key == '+' || event.key == '-'
+// || event.key == '*' || event.key == '/')
+// document.getElementById("result").value += event.key;
+// }
+
+function clr()
+{
+
+outputscreen.value="";
+}
+
+function del()
+{
+outputscreen.value=outputscreen.value.slice(0,-1);
+}
+
+function solve()
+{
+try{
+outputscreen.value=eval(outputscreen.value);
+}
+catch(err)
+{
+alert('invalid ')
+}
+
+}
+</script>
+</body>
+</html>

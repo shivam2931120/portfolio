@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="p.png" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shivam</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+      background-color: #1a1a1a;
+      color: #f4f4f4;
+    }
+    body.dark-mode .container {
+      background-color: #2d2d2d;
+      color: #f4f4f4;
+    }
+    body.dark-mode .project {
+      background-color: #444;
+      color: #f4f4f4;
+    }
+    body.dark-mode .project a {
+      color: #fcfcfc;
+    }
+    body.dark-mode form input,
+    body.dark-mode form textarea {
+      background-color: #444;
+      color: #f4f4f4;
+      border-color: #666;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 350px; 
+      height: 50px;
+      background-color: rgba(255, 255, 255, 0.9); 
+      color: #333; 
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-radius: 55px; 
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1); 
+      transition: all 0.5s ease; 
+      z-index: 1000;
+      backdrop-filter: blur(10px); 
+      border: 1px solid rgba(0, 0, 0, 0.05); 
+    }
+    body.dark-mode .navbar {
+      background-color: rgba(0, 0, 0, 0.9); 
+      color: #fff; 
+      border: 1px solid rgba(255, 255, 255, 0.05); 
+    }
+
+    .navbar a {
+      color: inherit; 
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 15px 15px 15px;
+      border-radius: 20px; 
+      transition: all 0.7s ease; 
+      position: relative;
+    }
+
+    .navbar a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px; 
+      background-color: #333; 
+      transform: translateX(-50%);
+      transition: width 0.2s ease;
+    }
+
+    body.dark-mode .navbar a::after {
+      background-color: #fff; 
+    }
+
+    .navbar a:hover::after {
+      width: 100%; 
+    }
+
+    .navbar a:hover {
+      color: #000;
+    }
+
+    body.dark-mode .navbar a:hover {
+      color: #fff; 
+    }
+
+    .navbar .logo {
+      font-size: 1.1rem; 
+      font-weight: 600; 
+      transition: opacity 0.5s ease; 
+    }
+
+    .navbar .logo:hover {
+      opacity: 0.8; 
+    }
+
+    .navbar.hidden {
+      opacity: 0;
+      transform: translate(-50%, -100%); 
+    }
+    .container {
+      max-width: 1200px;
+      margin: 100px auto 20px; 
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .section {
+      margin-bottom: 100px;
+      padding: 20px;
+      border-radius: 20px;
+      background: #ffe7e7;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark-mode .section {
+      background-color: #3a3a3a;
+    }
+    .section h2 {
+      margin-top: 0;
+      font-size: 2.2rem;
+      text-align: center;
+      color: #ff6f61;
+    }
+    body.dark-mode .section h2 {
+      color: #ffffff;
+    }
+
+    .text-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .text-stack p {
+      background: #dbc365;
+      padding: 30px;
+      border-radius: 10px;
+      width: 80%;
+      text-align: center;
+      transition: transform 0.3s, background-color 0.3s;
+      color: #333;
+    }
+    body.dark-mode .text-stack p {
+      background-color: #444;
+      color: #f4f4f4;
+    }
+    .text-stack p:hover {
+      transform: scale(1.05);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+      gap: 20px;
+    }
+    .project {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s, box-shadow 0.3s;
+    }
+    .project:hover {
+      transform: translateY(-10px);
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    }
+    .project h3 {
+      margin-top: 0;
+      color: #ff6f61;
+    }
+    body.dark-mode .project h3 {
+      color: #ff6f61;
+    }
+    .project a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    body.dark-mode .project a {
+      color: #ffcc00;
+    }
+    .project a:hover {
+      text-decoration: dashed underline;
+      text-shadow: #000000 0px 0px 1px;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #000000;
+      color: #fff;
+      border: none;
+      padding: 15px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.5s;
+    }
+    .theme-toggle:hover {
+      background: blue;
+    }
+
+    .social-container {
+      position: fixed;
+      bottom: 40px;
+      left: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      opacity: 0;
+      transform: translateY(-10px);
+      visibility: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    }
+    .social-container:hover .social-links {
+      opacity: 1;
+      transform: translateX(0px);
+      visibility: visible;
+    }
+    .social-container .main-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+    .social-container .main-icon:hover {
+      background-color: #000000;
+    }
+    body.light-mode .social-container .main-icon {
+      background-color: #000000;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #ffcc00;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, background-color 0.3s;
+    }
+    .social-links a:hover {
+      transform: scale(1.1);
+      background-color: #ffffff;
+    }
+
+    body.dark-mode .social-container .main-icon:hover {
+      background-color: #000000;
+    }
+
+    .social-links img,
+    .social-container .main-icon img {
+      width: 75%;
+      height: auto;
+    }
+
+    body.dark-mode .social-links a {
+      background-color: #ffcc00;
+    }
+
+    body.dark-mode .social-container .main-icon{
+      background-color: #f7f7f7;
+    }
+
+    body.dark-mode .social-links a:hover {
+      background-color: #ffffff;
+    }
+
+      .circular-images {
+          position: absolute;
+          bottom: 20px; 
+          right: 0px; 
+          display: flex;
+          gap: 5px; 
+        }
+
+      .circular-images .image-item {
+        width: 40px; 
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative; 
+      }
+
+      .circular-images .image-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .circular-images .image-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
+      }
+  
+      .circular-images .image-item:nth-child(1) {
+        right: 0;
+        z-index: 3;
+      }
+
+      .circular-images .image-item:nth-child(2) {
+        right: 15px; 
+        z-index: 2;
+      }
+
+      .circular-images .image-item:nth-child(3) {
+        right: 30px;
+        z-index: 1;
+      }
+  
+      body.dark-mode .circular-images .image-item {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      }
+  
+      .project {
+        position: relative; 
+        padding-bottom: 50px; 
+      }
+
+      .marquee-container {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 0px 0;
+        margin: 0px 0;
+        position: relative;
+        bottom: 20px;
+
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      }
+
+      body.light-mode .marquee-container{
+        color: #fff;
+      }
+    
+      body.dark-mode .marquee-container {
+        background-color: #2d2d2d;
+      }
+
+      body.light-mode .marquee-container {
+        background-color: #ffffff;
+      }
+
+      body.dark-mode .marquee-container {
+        background-color: #2d2d2d;
+      }
+
+      body.light-mode .marquee-container {
+        background-color: #ffffff;
+      }
+
+      .marquee-content {
+        display: inline-block;
+        animation: marquee-left 20s linear infinite;
+      }
+
+      .marquee-content.reverse {
+        animation: marquee-right 10s linear infinite;
+      }
+
+      .marquee-item {
+        display: inline-flex;
+        align-items: center;
+        margin: 0 10px;
+        padding: 5px 10px;
+        border-radius: 50px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+      }
+      
+      .marquee-item:hover {
+        transform: scale(1.2);
+      }
+
+      body.dark-mode .marquee-item:hover {
+        transform: scale(1.2); 
+      }
+
+      .marquee-item img {
+        height: 40px;
+        margin: 5px;
+      }
+
+      .marquee-item span {
+        font-size: 1.1rem;
+        font-weight: arial;
+        margin: 10px 10px 10px;
+      }
+
+      @keyframes marquee-left {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+      
+      @keyframes marquee-right {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }  
+
+      .marquee-container:hover .marquee-content,
+      .marquee-container:hover .marquee-content.reverse {
+          animation-play-state: paused;
+      }
+
+
+      #certifications {
+        margin-bottom: 100px;
+        padding: 20px;
+        border-radius: 20px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      body.dark-mode #certifications {
+        background-color: #3a3a3a;
+      }
+      #certifications h2 {
+        margin-top: 0;
+        font-size: 2.2rem;
+        text-align: center;
+        color: #ff6f61;
+      }
+      body.dark-mode #certifications h2 {
+        color: #ffffff;
+      }
+      .certifications-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+      .certification {
+        background: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.5s, box-shadow 0.3s;
+        text-align: center;
+      }
+
+      .certification:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+      .certification img {
+        width: 120px;
+        height: 120px;
+        align-self: center;
+        object-fit: contain;
+        margin-bottom: 15px;
+        cursor: pointer;
+      }
+
+      .certification span {
+        font-size: 15px;
+        font-weight: bold;
+        color: #333;
+      }
+      body.dark-mode .certification {
+        background-color: #444;
+      }
+      body.dark-mode .certification span {
+        color: #f4f4f4;
+      }
+
+      #fun-interactive {
+        margin-bottom: 10px;
+        padding: 20px;
+        border-radius: 20px;
+        background: #ffe7e7;
+        transition: background-color 0.3s, color 0.3s;
+        text-align: center;
+      }
+      body.dark-mode #fun-interactive {
+        background-color: #3a3a3a;
+      }
+      #fun-interactive h2 {
+        margin-top: 0;
+        font-size: 2.2rem;
+        color: #ff6f61;
+      }
+      body.dark-mode #fun-interactive h2 {
+        color: #ffffff;
+      }
+      #typed-text {
+        font-size: 2rem;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        color: #333;
+        display: inline-block;
+        border-right: 2px solid #333;
+        padding-right: 5px;
+        animation: blink-caret 0.75 s step-end infinite;
+      }
+      body.dark-mode #typed-text {
+        color: #f4f4f4;
+        border-right-color: #f4f4f4;
+      }
+      @keyframes blink-caret {
+        from, to { border-color: transparent; }
+        50% { border-color: #333; }
+      }
+      body.dark-mode @keyframes blink-caret {
+        50% { border-color: #f4f4f4; }
+      }
+
+      .img {
+        height: 50px;
+        width: 50px;
+        transition: 0.5s ease-in-out;
+      }
+
+      .img:hover{
+        transform: scale(1.2);
+      }
+
+      .progress-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background-color: #f4f4f4;
+        z-index: 1001;
+      }
+      body.dark-mode .progress-container {
+        background-color: #444;
+      }
+      .progress-bar {
+        height: 100%;
+        width: 0;
+        background-color: #ff6f61;
+        transition: width 0.7s ease;
+      }
+
+      body.dark-mode .progress-bar {
+        background-color: #ffffff;
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          min-width: 90%;
+          height: 40px;
+          font-size: 0.9rem;
+        }
+        .navbar a {
+          padding: 10px;
+        }
+        .container {
+          margin: 80px auto 20px;
+          padding: 10px;
+        }
+        .section {
+          margin-bottom: 50px;
+          padding: 15px;
+        }
+        .text-stack p {
+          padding: 20px;
+          width: 90%;
+        }
+        .projects-grid {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        .project {
+          padding: 30px;
+        }
+        .marquee-item {
+          margin: 0 5px;
+          padding: 5px;
+        }
+        .marquee-item img {
+          height: 30px;
+        }
+        .marquee-item span {
+          font-size: 0.9rem;
+        }
+        .certifications-grid {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+        .certification img {
+          width: 100px;
+          height: 100px;
+        }
+        .certification span {
+          font-size: 0.9rem;
+        }
+        .theme-toggle {
+          bottom: 10px;
+          right: 10px;
+          padding: 10px;
+          font-size: 1.2rem;
+        }
+        .social-container {
+          bottom: 20px;
+          left: 10px;
+        }
+        .social-container .main-icon {
+          width: 50px;
+          height: 50px;
+        }
+        .social-links a {
+          width: 40px;
+          height: 40px;
+        }
+      }
+  </style>
+</head>
+<body class="dark-mode">
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <nav class="navbar">
+    <div class="logo">
+        <a href="#about">About</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#projects">Projects</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <section id="fun-interactive" class="section">
+      <p>
+        <span id="typed-text">
+            <p><a href="shivam_resume.pdf" target="_blank"><img src="portfolio.png" alt="portfolio" class="img"></img></a></p>
+        </span>
+      </p>
+    </section>
+    <br>
+    <div class="marquee-container">
+      <div class="marquee-content reverse">
+        <div class="marquee-item">
+          <img src="python.png" alt="Python">
+          <span>Python</span>
+        </div>
+        <div class="marquee-item">
+          <img src="cpp.png" alt="C++">
+          <span>C++</span>
+        </div>
+        <div class="marquee-item">
+          <img src="java.png" alt="Java">
+          <span>Java</span>
+        </div>
+        <div class="marquee-item">
+          <img src="c.png" alt="C">
+          <span>C</span>
+        </div>
+        <div class="marquee-item">
+          <img src="ruby.png" alt="Ruby">
+          <span>Ruby</span>
+        </div>
+        <div class="marquee-item">
+          <img src="mysql.png" alt="MySQL">
+          <span>MySQL</span>
+        </div>
+        <div class="marquee-item">
+          <img src="php.png" alt="PHP">
+          <span>PHP</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="marquee-container">
+      <div class="marquee-content">
+        <div class="marquee-item">
+          <img src="mongo.svg" alt="MongoDB">
+          <span>MongoDB</span>
+        </div>
+        <div class="marquee-item">
+          <img src="js.png" alt="JavaScript">
+          <span>JavaScript</span>
+        </div>
+        <div class="marquee-item">
+          <img src="nodejs.png" alt="Node.js">
+          <span>Node.js</span>
+        </div>
+        <div class="marquee-item">
+          <img src="react.png" alt="React">
+          <span>React</span>
+        </div>
+        <div class="marquee-item">
+          <img src="html.png" alt="HTML">
+          <span>HTML</span>
+        </div>
+        <div class="marquee-item">
+          <img src="css.png" alt="CSS">
+          <span>CSS</span>
+        </div>
+        <div class="marquee-item">
+          <img src="flask.svg" alt="Flask">
+          <span>Flask</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="about" class="section">
+      <h2>About Me</h2>
+      <div class="text-stack">
+        <p>With a strong foundation in multiple programming languages, including C, C++, Python, Java, Ruby, and JavaScript, I possess the versatility to tackle a wide range of software development challenges. My experience spans from low-level systems programming to high-level web applications, allowing me to choose the best tools for each project.</p>
+        <p>As a skilled front-end developer proficient in HTML, CSS, and React, I excel at creating responsive and user-friendly interfaces. My passion for design and functionality ensures that I deliver visually appealing applications that enhance user experience while adhering to modern web standards.</p>
+      </div>
+    </section>
+
+    <section id="certifications" class="section">
+      <h2>Certifications</h2>
+      <div class="certifications-grid">
+        <div class="certification">
+          <img src="jsc.png" alt="Javascript"><br>
+          <span>Programming with JavaScript</span>
+        </div>
+        <div class="certification">
+          <img src="reactc.png" alt="React Certification"><br>
+          <span>React Basics</span>
+        </div><div class="certification">
+          <img src="node.png" alt="Node.js & MongoDB"><br>
+          <span>Node.js & MongoDB</span>
+        </div>
+        <div class="certification">
+          <img src="ds.png" alt="Data Science with Python"><br>
+          <span>Data Science with Python</span>
+        </div>
+        <div class="certification">
+          <img src="htmlc.png" alt="HTML"><br>
+          <span>HTML</span>
+        </div>
+        <div class="certification">
+          <img src="Python 3.jpeg" alt="Python3"><br>
+          <span>Python3</span>
+        </div>
+        <div class="certification">
+          <img src="javac.png" alt="Java"><br>
+          <span>JAVA</span>
+        </div>
+        <div class="certification">
+          <img src="Python Advanced.jpeg" alt="Python Advanced"><br>
+          <span>Python Advanced</span>
+        </div>
+        <div class="certification">
+          <img src="Computer Vision.jpeg" alt="Computer Vision"><br>
+          <span>Computer Vision</span>
+        </div>
+        <div class="certification">
+          <img src="C.jpg" alt="C programming"><br>
+          <span>C Programming</span>
+        </div>
+        <div class="certification">
+          <img src="Flask Using Python.jpg" alt="Flask Using Python"><br>
+          <span>Flask Using Python</span>
+        </div>
+        <div class="certification">
+          <img src="Django.jpg" alt="Django"><br>
+          <span>Django</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <!-- <div class="project">
+            <div class="circular-images">
+              <div class="image-item">
+                <img src="html.png" alt="HTML">
+              </div>
+              <div class="image-item">
+                <img src="css.png" alt="CSS">
+              </div>
+              <div class="image-item">
+                <img src="js.png" alt="JavaScript">
+              </div>
+            </div>
+            <h3>Currency Converter</h3>
+            <p>Currency Converter Web App allows users to convert between different currencies in real-time using the ExchangeRate-API with a modern and responsive UI</p>
+            <a href="https://shivam2931120.github.io/currency-converter/" target="blank">View Project</a>
+          </div> -->
+          <div class="project">
+            <div class="circular-images">
+              <div class="image-item" style="right: 30px;">
+                <img src="python.png" alt="Python">
+              </div>
+              
+            </div>
+            <h3>Neo</h3>
+            <p>Welcome to <b>Neo</b> - Your Personal Voice Assistant, a powerful and versatile voice-controlled assistant designed to simplify your daily tasks. Neo can help you with a wide range of activities, including opening applications, searching the web, checking the weather, managing system settings, and much more. With features like screen recording, QR code generation, and real-time system monitoring, Neo is your go-to assistant for productivity and convenience. Explore the future of personal assistance with Neo!</p>
+            <a href="https://github.com/shivam2931120/Neo" target="_blank">View Project</a>
+          </div>
+          <div class="project">
+            <div class="circular-images">
+              <div class="image-item" style="right: 30px;">
+                <img src="python.png" alt="Python">
+              </div>
+            </div>
+            <h3>Banking-Data-Analysis</h3>
+            <p><b>This project performs <b>Exploratory Data Analysis (EDA)</b> on a banking dataset to understand customer demographics, financial behavior, and factors influencing term deposit subscriptions. The analysis focuses on uncovering insights related to age, job type, balance, education, loans, contact type, and campaign success.</p>
+            <a href="https://github.com/shivam2931120/Banking-Data-Analysis" target="_blank">View Project</a>
+          </div>
+          <div class="project">
+            <div class="circular-images">
+              <div class="image-item" style="right: 0px;">
+                <img src="react.png" alt="JavaScript">
+              </div>
+              <div class="image-item" style="right: 15px;">
+                <img src="css.png" alt="CSS">
+              </div>
+              <div class="image-item" style="right: 30px;">
+                <img src="html.png" alt="HTML">
+              </div>
+            </div>
+            <h3>TheMovie</h3>
+            <p><b>The Movie</b> is a modern React-based movie catalogue web application that allows users to search, discover, and manage movies and TV shows. It integrates multiple external APIs (such as OMDb, TasteDive, and TVmaze) to provide comprehensive details, similar movie suggestions, and rich metadata. The platform includes user authentication powered by Clerk, enabling personalized user experiences — each user can securely log in, create a watchlist and watched list, and manage their favorite titles across devices.</p>
+            <a href="https://movie-wine-psi-79.vercel.app/" target="blank">View Project</a>
+          </div>
+          <!-- <div class="project">
+            <div class="circular-images">
+              <div class="image-item" style="right: 15px;">
+                <img src="mongo.svg" alt="MongoDB">
+              </div>
+              <div class="image-item" style="right: 30px;">
+                <img src="python.png" alt="Python">
+              </div>
+            </div>
+            <h3>Student Management System (Python)</h3>
+            <p><b>Student Management System</b> is a Python-based desktop application designed to efficiently manage student records using a 'tkinter' GUI and MongoDB as the backend database. It allows users to add, update, delete, and view student details, including fields such as student ID, name, date of birth, gender, email, phone number, address, and a profile picture, stored as binary data in the database. The application features a search function to locate students by ID, a view-all option with, and a theme toggle for light and dark modes. Designed for simplicity and functionality, it is ideal for educational institutions or organizations needing a streamlined way to handle student information.</p>
+            <a href="https://github.com/shivam2931120/student_management_system" target="blank">View Project</a>
+          </div>
+          <div class="project">
+            <div class="circular-images">
+              <div class="image-item" style="right: 0px;">
+                <img src="html.png" alt="HTML">
+              </div>
+              <div class="image-item" style="right: 15px;">
+                <img src="css.png" alt="CSS">
+              </div>
+              <div class="image-item" style="right: 30px;">
+                <img src="js.png" alt="JavaScript">
+              </div>
+            </div>
+            <h3>Student Management System (Web)</h3>
+            <p><b>Student Management System</b>is a web-based application that allows users to add, display, and remove student records efficiently. It features a user-friendly interface where details like name, date of birth, gender, address, phone number, and profile photo can be entered and displayed dynamically. The application uses JavaScript for handling data, image uploads, and real-time updates. Each student entry includes a removal option, making it easy to manage records. Ideal for schools or training centers, this lightweight system simplifies student data management.</p>
+            <a href="https://shivam2931120.github.io/student_management_system-web/" target="blank">View Project</a>
+          </div>
+          <div class="project">
+            <div class="circular-images">
+              <div class="image-item" style="right: 0px;">
+                <img src="html.png" alt="HTML">
+              </div>
+              <div class="image-item" style="right: 15px;">
+                <img src="css.png" alt="CSS">
+              </div>
+              <div class="image-item" style="right: 30px;">
+                <img src="js.png" alt="JavaScript">
+              </div>
+            </div>
+            <h3>Live Weather App</h3>
+            <p><b>Live Weather App</b>is designed to provide real-time weather updates, forecasts, and air quality information for cities worldwide. It features a user-friendly interface with a dynamic gradient background, an interactive search bar, and a toggle switch for temperature conversion between Celsius and Fahrenheit. Users can fetch weather data by entering a city name or using their current location. The app also includes a 5-day weather forecast, an interactive map with location markers, and a favorites list for quick access to preferred cities. Leveraging the OpenWeatherMap API, it provides weather details such as temperature, humidity, wind speed, pressure, visibility, sunrise and sunset times, and cloudiness.</p>
+            <a href="https://shivam2931120.github.io/weather_app/" target="blank">View Project</a>
+          </div> -->
+        </div>
+      </section>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()">☀️</button>
+  
+  <script>
+    //Toggle Theme
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+      const themeToggleButton = document.querySelector('.theme-toggle');
+      if (body.classList.contains('dark-mode')) {
+        themeToggleButton.textContent = '☀️';
+      } else {
+        themeToggleButton.textContent = '🌙'; 
+      }
+    }
+
+    //Navbar
+    const navbar = document.querySelector('.navbar');
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        navbar.classList.add('hidden');
+      } else {
+        navbar.classList.remove('hidden');
+      }
+      lastScrollTop = scrollTop;
+    });
+
+    const typedText = document.getElementById("typed-text");
+    const text = "Hi, I am Shivam. Welcome to my portfolio!!!";
+    let index = 0;
+
+    function type() {
+      if (index < text.length) {
+        typedText.textContent += text.charAt(index);
+        index++;
+        setTimeout(type, 100);
+      } else {
+        setTimeout(resetTyping, 1000); 
+      }
+    }
+
+    function resetTyping() {
+      typedText.textContent = "";
+      index = 0;
+      type();
+    }
+
+    type(); // Start the typing effect
+
+    const progressBar = document.getElementById("progressBar");
+
+    window.onscroll = () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercentage = (scrollTop / scrollHeight) * 100;
+      progressBar.style.width = scrollPercentage + "%";
+    };
+  </script>
+  <div class="social-container">
+    <div class="main-icon">
+      <img src="social-media.png" alt="Social">
+    </div>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/shivam-28bbb92ab/" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/shivam2931120" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111432.png" alt="GitHub">
+      </a>
+      <a href="mailto:shivam.bgp@outlook.com">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email">
+      </a>
+      <a href="https://leetcode.com/u/Shivam2931120/" target="_blank">
+        <img src="leetcode.png" alt="Leetcode">
+      </a>
+      <a href="shivam_resume.pdf" target="_blank">
+        <img src="cv.png" alt="Resume">
+      </a>
+    </div>
+  </div>
+</body>
+</html>
