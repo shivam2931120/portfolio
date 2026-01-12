@@ -107,10 +107,12 @@ export default function Hero() {
     useEffect(() => {
         setMounted(true);
         setGreeting(getGreeting());
-        const storedCount = localStorage.getItem("visitorBase");
-        const baseCount = storedCount ? parseInt(storedCount) : 1;
-        if (!storedCount) localStorage.setItem("visitorBase", baseCount.toString());
-        setVisitorCount(baseCount + Math.floor(Math.random() * 5));
+
+        // Get current count and increment it
+        const storedCount = localStorage.getItem("visitorCount");
+        const currentCount = storedCount ? parseInt(storedCount) + 1 : 1;
+        localStorage.setItem("visitorCount", currentCount.toString());
+        setVisitorCount(currentCount);
     }, []);
 
     useEffect(() => {
