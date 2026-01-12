@@ -18,7 +18,7 @@ export default function Navbar() {
 
     useEffect(() => {
         const storedCount = localStorage.getItem("visitorBase");
-        const baseCount = storedCount ? parseInt(storedCount) : Math.floor(Math.random() * 500) + 1200;
+        const baseCount = storedCount ? parseInt(storedCount) : 1;
         if (!storedCount) localStorage.setItem("visitorBase", baseCount.toString());
         setVisitorCount(baseCount + Math.floor(Math.random() * 5));
     }, []);
