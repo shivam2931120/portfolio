@@ -17,10 +17,9 @@ export default function Navbar() {
     const [visitorCount, setVisitorCount] = useState<number | null>(null);
 
     useEffect(() => {
-        // Get current count and increment it
+        // Just read the count - Hero.tsx handles incrementing
         const storedCount = localStorage.getItem("visitorCount");
-        const currentCount = storedCount ? parseInt(storedCount) + 1 : 1;
-        localStorage.setItem("visitorCount", currentCount.toString());
+        const currentCount = storedCount ? parseInt(storedCount) : 1;
         setVisitorCount(currentCount);
     }, []);
 

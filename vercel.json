@@ -1,6 +1,12 @@
 {
-    "buildCommand": "cd nextjs-portfolio && npm install && npm run build",
-    "outputDirectory": "nextjs-portfolio/.next",
-    "installCommand": "cd nextjs-portfolio && npm install",
-    "framework": "nextjs"
+    "version": 2,
+    "builds": [
+        {
+            "src": "nextjs-portfolio/package.json",
+            "use": "@vercel/next",
+            "config": {
+                "projectPath": "nextjs-portfolio"
+            }
+        }
+    ]
 }

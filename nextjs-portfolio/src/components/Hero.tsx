@@ -108,10 +108,17 @@ export default function Hero() {
         setMounted(true);
         setGreeting(getGreeting());
 
-        // Get current count and increment it
+        // Get current count - only increment once per session
+        const hasVisited = sessionStorage.getItem("hasVisited");
         const storedCount = localStorage.getItem("visitorCount");
-        const currentCount = storedCount ? parseInt(storedCount) + 1 : 1;
-        localStorage.setItem("visitorCount", currentCount.toString());
+        let currentCount = storedCount ? parseInt(storedCount) : 0;
+
+        if (!hasVisited) {
+            currentCount += 1;
+            localStorage.setItem("visitorCount", currentCount.toString());
+            sessionStorage.setItem("hasVisited", "true");
+        }
+
         setVisitorCount(currentCount);
     }, []);
 
