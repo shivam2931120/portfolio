@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { User, Code, Briefcase, Mail, Eye } from "lucide-react";
+import { User, Code, Briefcase, Mail } from "lucide-react";
 
 const navItems = [
     { name: "About", href: "#about", icon: User },
@@ -14,14 +14,6 @@ const navItems = [
 export default function Navbar() {
     const [scrollProgress, setScrollProgress] = useState(0);
     const [activeSection, setActiveSection] = useState("");
-    const [visitorCount, setVisitorCount] = useState<number | null>(null);
-
-    useEffect(() => {
-        // Just read the count - Hero.tsx handles incrementing
-        const storedCount = localStorage.getItem("visitorCount");
-        const currentCount = storedCount ? parseInt(storedCount) : 1;
-        setVisitorCount(currentCount);
-    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -56,36 +48,26 @@ export default function Navbar() {
             {/* Scroll Progress */}
             <div className="scroll-progress hidden md:block" style={{ width: `${scrollProgress}%` }} />
 
-            {/* Desktop Navigation - No name, just nav + visitor count */}
+            {/* Desktop Navigation */}
             <motion.nav
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 className="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block"
             >
-                <div className="flex items-center gap-4">
-                    {/* Nav links */}
-                    <div className="flex items-center gap-1 px-2 py-2 rounded-full glass-card">
-                        {navItems.map((item) => (
-                            <a
-                                key={item.name}
-                                href={item.href}
-                                onClick={(e) => handleClick(e, item.href)}
-                                className={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${activeSection === item.href.slice(1)
-                                    ? "text-white bg-white/10"
-                                    : "text-[var(--text-muted)] hover:text-white"
-                                    }`}
-                            >
-                                {item.name}
-                            </a>
-                        ))}
-                    </div>
-
-                    {/* Visitor Counter */}
-                    <div className="flex items-center gap-2 px-3 py-2 rounded-full glass-card">
-                        <Eye size={12} className="text-green-400" />
-                        <span className="text-xs text-white font-medium">{visitorCount?.toLocaleString() || "..."}</span>
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                    </div>
+                <div className="flex items-center gap-1 px-2 py-2 rounded-full glass-card">
+                    {navItems.map((item) => (
+                        <a
+                            key={item.name}
+                            href={item.href}
+                            onClick={(e) => handleClick(e, item.href)}
+                            className={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${activeSection === item.href.slice(1)
+                                ? "text-white bg-white/10"
+                                : "text-[var(--text-muted)] hover:text-white"
+                                }`}
+                        >
+                            {item.name}
+                        </a>
+                    ))}
                 </div>
             </motion.nav>
 

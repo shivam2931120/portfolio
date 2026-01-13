@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Download, ArrowRight, Eye, X, ChevronDown, Code2, Zap, Users, Github, Linkedin, Mail } from "lucide-react";
+import { Download, ArrowRight, X, ChevronDown, Code2, Zap, Users, Github, Linkedin, Mail } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import { createPortal } from "react-dom";
+import Typewriter from "./Typewriter";
 
 function getGreeting(): string {
     const hour = new Date().getHours();
@@ -20,7 +21,7 @@ const aboutItems = [
     { icon: Users, label: "Collaboration" },
 ];
 
-function ResumeModal({ onClose }: { onClose: () => void }) {
+function ResumeModal({ onClose, onDownload }: { onClose: () => void; onDownload: () => void }) {
     useEffect(() => {
         document.body.style.overflow = "hidden";
         return () => {
@@ -71,7 +72,7 @@ function ResumeModal({ onClose }: { onClose: () => void }) {
                 <div className="flex items-center justify-between p-4 border-b border-[var(--border-subtle)]">
                     <span className="text-white font-medium">Resume Preview</span>
                     <div className="flex gap-2">
-                        <a href={personalInfo.resume} download className="btn-primary text-xs py-2 px-3">
+                        <a href={personalInfo.resume} download onClick={onDownload} className="btn-primary text-xs py-2 px-3">
                             <Download size={14} /> Download
                         </a>
                         <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-lg">
@@ -91,11 +92,24 @@ function ResumeModal({ onClose }: { onClose: () => void }) {
 }
 
 export default function Hero() {
-    const [visitorCount, setVisitorCount] = useState<number | null>(null);
     const [greeting, setGreeting] = useState("Hello");
     const [showResumeModal, setShowResumeModal] = useState(false);
     const [currentLine, setCurrentLine] = useState(0);
     const [mounted, setMounted] = useState(false);
+    const [localTime, setLocalTime] = useState("");
+    const [downloadCount, setDownloadCount] = useState(0);
+
+    // Load download count on mount
+    useEffect(() => {
+        const stored = localStorage.getItem("resumeDownloads");
+        if (stored) setDownloadCount(parseInt(stored));
+    }, []);
+
+    const trackDownload = () => {
+        const newCount = downloadCount + 1;
+        setDownloadCount(newCount);
+        localStorage.setItem("resumeDownloads", newCount.toString());
+    };
 
     const terminalLines = [
         "$ who am i?",
@@ -108,18 +122,20 @@ export default function Hero() {
         setMounted(true);
         setGreeting(getGreeting());
 
-        // Get current count - only increment once per session
-        const hasVisited = sessionStorage.getItem("hasVisited");
-        const storedCount = localStorage.getItem("visitorCount");
-        let currentCount = storedCount ? parseInt(storedCount) : 0;
+        // Update time every second
+        const updateTime = () => {
+            const now = new Date();
+            const time = now.toLocaleTimeString("en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+            });
+            setLocalTime(time);
+        };
 
-        if (!hasVisited) {
-            currentCount += 1;
-            localStorage.setItem("visitorCount", currentCount.toString());
-            sessionStorage.setItem("hasVisited", "true");
-        }
-
-        setVisitorCount(currentCount);
+        updateTime();
+        const interval = setInterval(updateTime, 1000);
+        return () => clearInterval(interval);
     }, []);
 
     useEffect(() => {
@@ -148,20 +164,25 @@ export default function Hero() {
                             animate={{ opacity: 1, y: 0 }}
                             className="lg:col-span-3"
                         >
-                            {/* Greeting Badge */}
+                            {/* Greeting Badge with Live Time */}
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card mb-3">
                                 <span className="text-xs text-[var(--text-muted)]">{greeting}</span>
                                 <span className="w-1 h-1 rounded-full bg-[var(--text-faint)]" />
-                                <Eye size={10} className="text-green-400" />
-                                <span className="text-xs text-white font-medium">{visitorCount?.toLocaleString() || "..."}</span>
+                                <span className="text-xs text-white font-medium font-mono">{localTime || "..."}</span>
+                                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                             </div>
 
                             {/* Name + Title */}
                             <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-1.5">
                                 Shivam
                             </h1>
-                            <p className="text-base md:text-lg text-[var(--text-secondary)] mb-4">
-                                Full Stack Developer
+                            <p className="text-base md:text-lg text-[var(--text-secondary)] mb-4 h-7">
+                                <Typewriter
+                                    words={["Full Stack Developer", "React Enthusiast", "Problem Solver", "Open Source Contributor"]}
+                                    typingSpeed={80}
+                                    deletingSpeed={40}
+                                    pauseDuration={2500}
+                                />
                             </p>
 
                             {/* Terminal */}
@@ -184,10 +205,15 @@ export default function Hero() {
                             </div>
 
                             {/* CTAs */}
-                            <div className="flex gap-2.5">
+                            <div className="flex gap-2.5 items-center">
                                 <button onClick={() => setShowResumeModal(true)} className="btn-primary text-sm">
                                     <Download size={15} /> Resume
                                 </button>
+                                {downloadCount > 0 && (
+                                    <span className="px-2 py-0.5 rounded-full bg-white/10 text-[10px] text-white/70 font-mono">
+                                        ↓ {downloadCount}
+                                    </span>
+                                )}
                                 <button onClick={scrollToProjects} className="btn-secondary text-sm">
                                     Projects <ArrowRight size={15} />
                                 </button>
@@ -233,7 +259,7 @@ export default function Hero() {
             </section>
 
             {/* Resume Modal using Portal */}
-            {mounted && showResumeModal && <ResumeModal onClose={() => setShowResumeModal(false)} />}
+            {mounted && showResumeModal && <ResumeModal onClose={() => setShowResumeModal(false)} onDownload={trackDownload} />}
         </>
     );
 }
