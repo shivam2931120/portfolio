@@ -68,12 +68,12 @@ export default function Contact() {
 
     return (
         <section id="contact" className="py-8 md:py-12 px-4 pb-24 md:pb-12">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
                 <motion.h2
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-xl md:text-2xl font-heading font-bold text-white mb-2 text-center"
+                    className="text-2xl md:text-3xl font-heading font-bold text-white mb-2 text-center"
                 >
                     Get In <span className="text-[var(--text-secondary)]">Touch</span>
                 </motion.h2>

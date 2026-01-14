@@ -178,7 +178,7 @@ export default function Hero() {
                             </h1>
                             <p className="text-base md:text-lg text-[var(--text-secondary)] mb-4 h-7">
                                 <Typewriter
-                                    words={["Full Stack Developer", "React Enthusiast", "Problem Solver", "Open Source Contributor"]}
+                                    words={["Full Stack Developer", "React Enthusiast", "AI + Web Projects", "Open to Remote"]}
                                     typingSpeed={80}
                                     deletingSpeed={40}
                                     pauseDuration={2500}
