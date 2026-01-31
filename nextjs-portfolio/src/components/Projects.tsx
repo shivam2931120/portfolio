@@ -6,47 +6,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, X, ArrowUpRight } from "lucide-react";
 import { createPortal } from "react-dom";
 
-const projects = [
-    {
-        title: "Neo - AI Voice Assistant",
-        desc: "Intelligent personal assistant for desktop automation with voice commands",
-        tech: [
-            { name: "Python", icon: "/images/python.png" },
-        ],
-        link: "https://shivam-portfolio.netlify.app/",
-        github: "https://github.com/shivam2931120",
-    },
-    {
-        title: "Live Weather App",
-        desc: "Real-time weather tracking with air quality index and forecasts",
-        tech: [
-            { name: "JavaScript", icon: "/images/js.png" },
-            { name: "HTML", icon: "/images/html.png" },
-        ],
-        link: "https://shivam2931120.github.io/weather_app/",
-        github: "https://github.com/shivam2931120/weather_app",
-    },
-    {
-        title: "Currency Converter",
-        desc: "Quick currency conversion with real-time exchange rates",
-        tech: [
-            { name: "JavaScript", icon: "/images/js.png" },
-            { name: "HTML", icon: "/images/html.png" },
-        ],
-        link: "https://shivam2931120.github.io/currency-converter/",
-        github: "https://github.com/shivam2931120/currency-converter",
-    },
-    {
-        title: "Student Management",
-        desc: "Streamlined student record management with CRUD operations",
-        tech: [
-            { name: "Python", icon: "/images/python.png" },
-            { name: "SQLite", icon: "/images/mysql.png" },
-        ],
-        link: "https://shivam-portfolio.netlify.app/",
-        github: "https://github.com/shivam2931120/student_management_system",
-    },
-];
+import { projects as projectsData, techStackIcons } from "@/lib/data";
+
+const projects = projectsData.map((project) => ({
+    title: project.title,
+    tag: project.tag,
+    desc: project.description,
+    tech: project.techStack.map((tech) => ({
+        name: tech,
+        icon: techStackIcons[tech] || "/images/code.png", // Fallback icon
+    })),
+    link: project.link,
+    github: project.github,
+}));
 
 function ProjectModal({ project, onClose }: { project: typeof projects[0]; onClose: () => void }) {
     useEffect(() => {
@@ -112,17 +84,45 @@ function ProjectModal({ project, onClose }: { project: typeof projects[0]; onClo
                     ))}
                 </div>
 
-                <h3 className="text-xl font-heading font-bold text-white mb-2">
-                    {project.title}
-                </h3>
+                <div className="flex items-center gap-3 mb-2">
+                    <h3 className="text-xl font-heading font-bold text-white">
+                        {project.title}
+                    </h3>
+                    {project.tag && (
+                        <span
+                            className="
+                                relative inline-flex items-center
+                                px-3 py-1
+                                text-xs font-semibold tracking-wide
+                                rounded-md
+
+                                bg-gradient-to-r from-zinc-800 to-zinc-900
+                                text-zinc-100
+
+                                border border-zinc-700/60
+                                shadow-md shadow-black/30
+
+                                backdrop-blur-sm
+
+                                transition-all duration-200
+                                hover:shadow-lg
+                                hover:-translate-y-[1px]
+                            "
+                        >
+                            {project.tag}
+                        </span>
+                    )}
+                </div>
                 <p className="text-sm text-[var(--text-secondary)] mb-6 leading-relaxed">
                     {project.desc}
                 </p>
 
                 <div className="flex gap-3">
-                    <a href={project.link} target="_blank" className="flex-1 btn-primary justify-center">
-                        <ExternalLink size={16} /> Live Demo
-                    </a>
+                    {project.link && (
+                        <a href={project.link} target="_blank" className="flex-1 btn-primary justify-center">
+                            <ExternalLink size={16} /> Live Demo
+                        </a>
+                    )}
                     <a href={project.github} target="_blank" className="flex-1 btn-secondary justify-center">
                         <Github size={16} /> Source Code
                     </a>
@@ -165,6 +165,34 @@ export default function Projects() {
                                 transition={{ delay: index * 0.1 }}
                                 className="group relative glass-card overflow-hidden hover:border-white/20 transition-colors"
                             >
+                                {/* Tag Badge - Top Right */}
+                                {project.tag && (
+                                    <div className="absolute top-6 right-20 z-20">
+                                        <span
+                                            className="
+                                                relative inline-flex items-center
+                                                px-3 py-1
+                                                text-xs font-semibold tracking-wide
+                                                rounded-md
+
+                                                bg-gradient-to-r from-black-800 to-black-900
+                                                text-red-500
+
+                                                border border-zinc-700/60
+                                                shadow-md shadow-black/30
+
+                                                backdrop-blur-sm
+
+                                                transition-all duration-200
+                                                hover:shadow-lg
+                                            "
+                                        >
+                                            {project.tag}
+                                        </span>
+                                    </div>
+                                )}
+
+
                                 {/* Content */}
                                 <div className="p-5 md:p-6">
                                     {/* Header with tech icons */}
@@ -196,15 +224,17 @@ export default function Projects() {
 
                                     {/* Actions */}
                                     <div className="flex gap-3">
-                                        <a
-                                            href={project.link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-sm font-medium hover:bg-white/90 transition-colors"
-                                        >
-                                            <ExternalLink size={14} />
-                                            Live Demo
-                                        </a>
+                                        {project.link && (
+                                            <a
+                                                href={project.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-sm font-medium hover:bg-white/90 transition-colors"
+                                            >
+                                                <ExternalLink size={14} />
+                                                Live Demo
+                                            </a>
+                                        )}
                                         <a
                                             href={project.github}
                                             target="_blank"
