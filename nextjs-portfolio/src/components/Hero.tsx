@@ -244,7 +244,7 @@ export default function Hero() {
                             </div>
                         </motion.div>
                     </div>
-
+                    {/* Hello */}
                     {/* Scroll Indicator */}
                     <motion.div
                         initial={{ opacity: 0 }}
