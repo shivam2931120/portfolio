@@ -1,8 +1,4 @@
-// Portfolio Data
 
-// ❌ Removed unused Next.js internal import
-
-/* ================= PERSONAL INFO ================= */
 
 export const personalInfo = {
   name: "Shivam",
@@ -154,32 +150,6 @@ export const techStackIcons: Record<string, string> = {
   Zenity: "/images/zenity.png",
 };
 
-export const playlist = [
-  {
-    title: "Midnight City",
-    artist: "M83",
-    spotifyUrl: "https://open.spotify.com/track/1eyzqe2QqGZUmfcPZtrIyt",
-  },
-  {
-    title: "Instant Crush",
-    artist: "Daft Punk ft. Julian Casablancas",
-    spotifyUrl: "https://open.spotify.com/track/2nG54Y4a3sH9YpfxF4yo2q",
-  },
-  {
-    title: "Nightcall",
-    artist: "Kavinsky",
-    spotifyUrl: "https://open.spotify.com/track/0U0ldCRmgCqhVvD6ksG63j",
-  },
-  {
-    title: "Resonance",
-    artist: "Home",
-    spotifyUrl: "https://open.spotify.com/track/1TuopWDIuDi1553081zvuU",
-  },
-  {
-    title: "Blinding Lights",
-    artist: "The Weeknd",
-    spotifyUrl: "https://open.spotify.com/track/0VjIjW4GlUZAMYd2vXMi3b",
-  },
-];
+
 
 

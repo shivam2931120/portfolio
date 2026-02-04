@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Download, ArrowRight, X, ChevronDown, Code2, Zap, Users, Github, Linkedin, Mail } from "lucide-react";
+import { Download, ArrowRight, X, ChevronDown, Code2, Zap, Layers, Sparkles, Github, Linkedin, Mail } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import { createPortal } from "react-dom";
 import Typewriter from "./Typewriter";
@@ -18,7 +18,8 @@ function getGreeting(): string {
 const aboutItems = [
     { icon: Code2, label: "Full Stack" },
     { icon: Zap, label: "Performance" },
-    { icon: Users, label: "Collaboration" },
+    { icon: Layers, label: "Scalable Systems" },
+    { icon: Sparkles, label: "Clean Code" },
 ];
 
 function ResumeModal({ onClose, onDownload }: { onClose: () => void; onDownload: () => void }) {
@@ -233,7 +234,7 @@ export default function Hero() {
                                 I focus on creating performant, user-friendly applications.
                             </p>
 
-                            <div className="grid grid-cols-3 gap-2">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                                 {aboutItems.map((item, i) => (
                                     <div key={i} className="text-center p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
                                         <item.icon size={18} className="mx-auto mb-1 text-white" />

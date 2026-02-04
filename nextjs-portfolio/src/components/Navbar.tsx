@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { User, Code, Briefcase, Mail } from "lucide-react";
+import { User, Code, Briefcase, Mail, History } from "lucide-react";
 
 const navItems = [
     { name: "About", href: "#about", icon: User },
