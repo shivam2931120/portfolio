@@ -19,6 +19,7 @@ export const personalInfo = {
 /* ================= SKILLS ================= */
 
 export const skills = [
+  { name: "Bash", icon: "/images/bash.svg" },
   { name: "Python", icon: "/images/python.png" },
   { name: "C++", icon: "/images/cpp.png" },
   { name: "Java", icon: "/images/java.png" },
@@ -123,6 +124,15 @@ export const projects = [
     link: "https://attendify.justshivamm.in",
     github: "https://github.com/shivam2931120/attendance-tracker",
   },
+  {
+    title: "UNIX System Utility Toolkit",
+    description:
+      "A lightweight, modular dashboard for Linux power users. Integrates essential system tools—Process Manager, Network Monitor, Service Control, and Algorithmic Simulators—into a single, easy-to-use graphical interface powered by Zenity. Built to demonstrate the power of shell scripting combined with high performance C modules.",
+
+    techStack: ["Bash", "C", "Zenity"],
+
+    github: "https://github.com/shivam2931120/unix_mini_project.git",
+  },
 ];
 
 
@@ -139,6 +149,9 @@ export const techStackIcons: Record<string, string> = {
   PostgreSQL: "/images/postgresql.svg",
   "Next.js": "/next.svg",
   Clerk: "/images/clerk.svg",
+  Bash: "/images/bash.svg",
+  C: "/images/c.png",
+  Zenity: "/images/zenity.png",
 };
 
 export const playlist = [
