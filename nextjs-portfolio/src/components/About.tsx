@@ -1,19 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Zap, Layers, Sparkles } from "lucide-react";
 
 const stats = [
     { value: "3+", label: "Years Exp" },
     { value: "7", label: "Projects" },
     { value: "14+", label: "Tech Stack" },
-];
-
-const strengths = [
-    { icon: Code2, label: "Full Stack" },
-    { icon: Zap, label: "Performance" },
-    { icon: Layers, label: "Scalable Systems" },
-    { icon: Sparkles, label: "Clean Code" },
 ];
 
 export default function About() {

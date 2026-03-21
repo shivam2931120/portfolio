@@ -19,7 +19,7 @@ export default function ShareButton() {
                     text: shareText,
                     url: shareUrl,
                 });
-            } catch (err) {
+            } catch {
                 // User cancelled or error
             }
         } else {
@@ -32,7 +32,7 @@ export default function ShareButton() {
             await navigator.clipboard.writeText(shareUrl);
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
-        } catch (err) {
+        } catch {
             // Fallback
         }
     };

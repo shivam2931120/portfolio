@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Download, ArrowRight, X, ChevronDown, Code2, Zap, Layers, Sparkles, Github, Linkedin, Mail } from "lucide-react";
+import { Download, ArrowRight, X, ChevronDown, Code2, Zap, Layers, Sparkles } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import { createPortal } from "react-dom";
 import Typewriter from "./Typewriter";
@@ -20,6 +20,13 @@ const aboutItems = [
     { icon: Zap, label: "Performance" },
     { icon: Layers, label: "Scalable Systems" },
     { icon: Sparkles, label: "Clean Code" },
+];
+
+const terminalLines = [
+    "$ who am i?",
+    "→ Shivam — Developer",
+    "$ status",
+    "→ Available for opportunities ✓",
 ];
 
 function ResumeModal({ onClose, onDownload }: { onClose: () => void; onDownload: () => void }) {
@@ -93,17 +100,17 @@ function ResumeModal({ onClose, onDownload }: { onClose: () => void; onDownload:
 }
 
 export default function Hero() {
-    const [greeting, setGreeting] = useState("Hello");
     const [showResumeModal, setShowResumeModal] = useState(false);
     const [currentLine, setCurrentLine] = useState(0);
-    const [mounted, setMounted] = useState(false);
     const [localTime, setLocalTime] = useState("");
     const [downloadCount, setDownloadCount] = useState(0);
+    const greeting = getGreeting();
 
-    // Load download count on mount
     useEffect(() => {
         const stored = localStorage.getItem("resumeDownloads");
-        if (stored) setDownloadCount(parseInt(stored));
+        if (stored) {
+            setTimeout(() => setDownloadCount(parseInt(stored, 10)), 0);
+        }
     }, []);
 
     const trackDownload = () => {
@@ -112,18 +119,7 @@ export default function Hero() {
         localStorage.setItem("resumeDownloads", newCount.toString());
     };
 
-    const terminalLines = [
-        "$ who am i?",
-        "→ Shivam — Developer",
-        "$ status",
-        "→ Available for opportunities ✓",
-    ];
-
     useEffect(() => {
-        setMounted(true);
-        setGreeting(getGreeting());
-
-        // Update time every second
         const updateTime = () => {
             const now = new Date();
             const time = now.toLocaleTimeString("en-US", {
@@ -152,20 +148,14 @@ export default function Hero() {
 
     return (
         <>
-            {/* Floating Social Icons - Right Side */}
-
-
             <section id="about" className="min-h-[65vh] md:min-h-[70vh] flex items-center px-4 md:px-8 pt-16 md:pt-20 pb-4">
                 <div className="max-w-6xl mx-auto w-full">
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-6 items-center">
-
-                        {/* Left Column - 3 cols */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             className="lg:col-span-3"
                         >
-                            {/* Greeting Badge with Live Time */}
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card mb-3">
                                 <span className="text-xs text-[var(--text-muted)]">{greeting}</span>
                                 <span className="w-1 h-1 rounded-full bg-[var(--text-faint)]" />
@@ -173,7 +163,6 @@ export default function Hero() {
                                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                             </div>
 
-                            {/* Name + Title */}
                             <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-1.5">
                                 Shivam
                             </h1>
@@ -186,7 +175,6 @@ export default function Hero() {
                                 />
                             </p>
 
-                            {/* Terminal */}
                             <div className="glass-card p-3 md:p-4 rounded-xl mb-4 max-w-md">
                                 <div className="flex items-center gap-1.5 mb-2">
                                     <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
@@ -205,7 +193,6 @@ export default function Hero() {
                                 </div>
                             </div>
 
-                            {/* CTAs */}
                             <div className="flex gap-2.5 items-center">
                                 <button onClick={() => setShowResumeModal(true)} className="btn-primary text-sm">
                                     <Download size={15} /> Resume
@@ -221,7 +208,6 @@ export default function Hero() {
                             </div>
                         </motion.div>
 
-                        {/* Right Column - About Card - 2 cols */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -244,8 +230,7 @@ export default function Hero() {
                             </div>
                         </motion.div>
                     </div>
-                    {/* Hello */}
-                    {/* Scroll Indicator */}
+
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -259,8 +244,7 @@ export default function Hero() {
                 </div>
             </section>
 
-            {/* Resume Modal using Portal */}
-            {mounted && showResumeModal && <ResumeModal onClose={() => setShowResumeModal(false)} onDownload={trackDownload} />}
+            {showResumeModal && <ResumeModal onClose={() => setShowResumeModal(false)} onDownload={trackDownload} />}
         </>
     );
 }

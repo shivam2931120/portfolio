@@ -135,11 +135,6 @@ function ProjectModal({ project, onClose }: { project: typeof projects[0]; onClo
 
 export default function Projects() {
     const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     return (
         <>
@@ -257,7 +252,7 @@ export default function Projects() {
 
             {/* Project Modal using Portal */}
             <AnimatePresence>
-                {mounted && selectedProject && (
+                {selectedProject && (
                     <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
                 )}
             </AnimatePresence>

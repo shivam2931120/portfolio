@@ -12,7 +12,6 @@ import ShareButton from "@/components/ShareButton";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import PageLoader from "@/components/PageLoader";
 import BackToTop from "@/components/BackToTop";
-import CommandPalette from "@/components/CommandPalette";
 
 export default function Home() {
   return (

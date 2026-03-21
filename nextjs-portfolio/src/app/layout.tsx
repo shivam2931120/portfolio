@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
-import VoiceAgent from "@/components/VoiceAgent";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -50,7 +49,6 @@ export default function RootLayout({
     >
       <body className="bg-[#0a0a0a] text-white antialiased">
         {children}
-        <VoiceAgent />
       </body>
     </html>
   );

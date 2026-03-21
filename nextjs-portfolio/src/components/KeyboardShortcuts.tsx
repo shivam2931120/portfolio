@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 
 interface ShortcutConfig {
     key: string;
@@ -15,13 +15,16 @@ export default function KeyboardShortcuts() {
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }, []);
 
-    const shortcuts: ShortcutConfig[] = [
-        { key: "a", description: "Go to About", action: () => scrollTo("about") },
-        { key: "s", description: "Go to Skills", action: () => scrollTo("skills") },
-        { key: "p", description: "Go to Projects", action: () => scrollTo("projects") },
-        { key: "c", description: "Go to Contact", action: () => scrollTo("contact") },
-        { key: "h", description: "Go to Home (top)", action: () => window.scrollTo({ top: 0, behavior: "smooth" }) },
-    ];
+    const shortcuts: ShortcutConfig[] = useMemo(
+        () => [
+            { key: "a", description: "Go to About", action: () => scrollTo("about") },
+            { key: "s", description: "Go to Skills", action: () => scrollTo("skills") },
+            { key: "p", description: "Go to Projects", action: () => scrollTo("projects") },
+            { key: "c", description: "Go to Contact", action: () => scrollTo("contact") },
+            { key: "h", description: "Go to Home (top)", action: () => window.scrollTo({ top: 0, behavior: "smooth" }) },
+        ],
+        [scrollTo]
+    );
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {

@@ -1,17 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ExternalLink, RefreshCw } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 
 export default function GitHubGraph() {
-    const [timestamp, setTimestamp] = useState<number | null>(null);
+    const [timestamp, setTimestamp] = useState<number>(0);
     const [isRefreshing, setIsRefreshing] = useState(false);
 
-    // Only set timestamp on client side to avoid hydration mismatch
     useEffect(() => {
-        setTimestamp(Date.now());
+        setTimeout(() => setTimestamp(Date.now()), 0);
     }, []);
 
     const handleRefresh = () => {
@@ -59,14 +59,15 @@ export default function GitHubGraph() {
 
                     {/* GitHub Activity Graph */}
                     <div className="overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0">
-                        {timestamp && (
-                            <img
-                                key={timestamp}
-                                src={`https://github-readme-activity-graph.vercel.app/graph?username=${personalInfo.githubUsername}&bg_color=0a0a0a&color=ffffff&line=22c55e&point=ffffff&area=true&area_color=22c55e&hide_border=true&custom_title=&t=${timestamp}`}
-                                alt="GitHub Activity Graph"
-                                className="w-full min-w-[600px] md:min-w-0 h-auto rounded-lg"
-                            />
-                        )}
+                        <Image
+                            key={timestamp}
+                            src={`https://github-readme-activity-graph.vercel.app/graph?username=${personalInfo.githubUsername}&bg_color=0a0a0a&color=ffffff&line=22c55e&point=ffffff&area=true&area_color=22c55e&hide_border=true&custom_title=&t=${timestamp}`}
+                            alt="GitHub Activity Graph"
+                            width={1200}
+                            height={400}
+                            className="w-full min-w-[600px] md:min-w-0 h-auto rounded-lg"
+                            unoptimized
+                        />
                     </div>
                 </motion.div>
             </div>
