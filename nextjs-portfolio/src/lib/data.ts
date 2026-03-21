@@ -149,7 +149,3 @@ export const techStackIcons: Record<string, string> = {
   C: "/images/c.png",
   Zenity: "/images/zenity.png",
 };
-
-
-
-
