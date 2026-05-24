@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+.visitor-counter.json
+.visitor-counter.json.tmp
 
 # debug
 npm-debug.log*

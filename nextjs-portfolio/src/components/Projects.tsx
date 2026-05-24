@@ -18,6 +18,7 @@ const projects = projectsData.map((project) => ({
     })),
     link: project.link,
     github: project.github,
+    links: project.links ?? [],
 }));
 
 function ProjectModal({ project, onClose }: { project: typeof projects[0]; onClose: () => void }) {
@@ -117,13 +118,34 @@ function ProjectModal({ project, onClose }: { project: typeof projects[0]; onClo
                     {project.desc}
                 </p>
 
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-3">
                     {project.link && (
-                        <a href={project.link} target="_blank" className="flex-1 btn-primary justify-center">
+                        <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="min-w-[130px] flex-1 btn-primary justify-center"
+                        >
                             <ExternalLink size={16} /> Live Demo
                         </a>
                     )}
-                    <a href={project.github} target="_blank" className="flex-1 btn-secondary justify-center">
+                    {project.links.map((link) => (
+                        <a
+                            key={link.href}
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="min-w-[130px] flex-1 btn-secondary justify-center"
+                        >
+                            <ExternalLink size={16} /> {link.label}
+                        </a>
+                    ))}
+                    <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="min-w-[130px] flex-1 btn-secondary justify-center"
+                    >
                         <Github size={16} /> Source Code
                     </a>
                 </div>
@@ -218,7 +240,7 @@ export default function Projects() {
                                     </p>
 
                                     {/* Actions */}
-                                    <div className="flex gap-3">
+                                    <div className="flex flex-wrap gap-2">
                                         {project.link && (
                                             <a
                                                 href={project.link}
@@ -230,6 +252,18 @@ export default function Projects() {
                                                 Live Demo
                                             </a>
                                         )}
+                                        {project.links.map((link) => (
+                                            <a
+                                                key={link.href}
+                                                href={link.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2 px-3 py-2 rounded-full border border-white/10 bg-white/5 text-white text-xs font-medium hover:bg-white/10 transition-colors"
+                                            >
+                                                <ExternalLink size={13} />
+                                                {link.label}
+                                            </a>
+                                        ))}
                                         <a
                                             href={project.github}
                                             target="_blank"

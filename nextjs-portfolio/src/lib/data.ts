@@ -65,7 +65,22 @@ export const certifications = [
 
 /* ================= PROJECTS ================= */
 
-export const projects = [
+export type ProjectLink = {
+  label: string;
+  href: string;
+};
+
+export type Project = {
+  title: string;
+  tag?: string;
+  description: string;
+  techStack: string[];
+  link?: string;
+  github: string;
+  links?: ProjectLink[];
+};
+
+export const projects: Project[] = [
   {
     title: "BB84 Quantum Messenger",
     tag: "Mini Project",
@@ -121,12 +136,54 @@ export const projects = [
     github: "https://github.com/shivam2931120/attendance-tracker",
   },
   {
+    title: "EventHub",
+    description:
+      "A full-stack event management and ticketing platform for organizers and attendees. It supports event publishing, ticket registration, secure QR ticket generation, payment flow tracking, staff check-in dashboards, duplicate scan prevention, and signed ticket token validation backed by PostgreSQL.",
+
+    techStack: ["Next.js", "React", "PostgreSQL"],
+
+    link: "https://eventhub.justshivamm.in",
+    github: "https://github.com/shivam2931120/EventHub",
+  },
+  {
+    title: "Editorial",
+    description:
+      "A realtime collaborative document workspace inspired by Google Docs. It includes rich text editing, shared folders, comments, version history, document search, reusable templates, export flows, and live multi-user editing so teams can draft, review, and organize writing in one place.",
+
+    techStack: ["React", "Node.js", "PostgreSQL"],
+
+    link: "https://editorial.justshivamm.in",
+    github: "https://github.com/shivam2931120/realtime_collab",
+  },
+  {
     title: "UNIX System Utility Toolkit",
     description:
       "A lightweight, modular dashboard for Linux power users. Integrates essential system tools—Process Manager, Network Monitor, Service Control, and Algorithmic Simulators—into a single, easy-to-use graphical interface powered by Zenity. Built to demonstrate the power of shell scripting combined with high performance C modules.",
 
     techStack: ["Bash", "C", "Zenity"],
 
+    links: [
+      {
+        label: "Release",
+        href: "https://github.com/shivam2931120/unix_mini_project/releases/tag/v1.0.0",
+      },
+      {
+        label: "Ubuntu DEB",
+        href: "https://github.com/shivam2931120/unix_mini_project/releases/download/v1.0.0/unix-utility-suite_1.0.0_amd64.deb",
+      },
+      {
+        label: "Snap",
+        href: "https://github.com/shivam2931120/unix_mini_project/releases/download/v1.0.0/unix-utility-suite_1.0.0_amd64.snap",
+      },
+      {
+        label: "GNOME Ext",
+        href: "https://github.com/shivam2931120/unix_mini_project/releases/download/v1.0.0/unix-toolkit-launcher@shivam2931120.github.io.shell-extension.zip",
+      },
+      {
+        label: "Flatpak",
+        href: "https://github.com/shivam2931120/unix_mini_project/releases/download/v1.0.0/io.github.shivam2931120.UnixToolkitLauncher.flatpak",
+      },
+    ],
     github: "https://github.com/shivam2931120/unix_mini_project.git",
   },
 ];

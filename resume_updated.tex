@@ -1,0 +1,276 @@
+%-------------------------
+% Resume in Latex
+% Author
+% License : MIT
+%------------------------
+
+\documentclass[a4paper,10pt]{article}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\setlength{\multicolsep}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\footskip}{5pt}
+\geometry{left=0.8cm, top=0.6cm, right=0.8cm, bottom=0.6cm}
+\linespread{1.01}
+
+\usepackage[most]{tcolorbox}
+\tcbset{
+  frame code={},
+  center title,
+  left=0pt,
+  right=0pt,
+  top=0pt,
+  bottom=0pt,
+  colback=gray!20,
+  colframe=white,
+  width=\dimexpr\textwidth\relax,
+  enlarge left by=-2mm,
+  boxsep=4pt,
+  arc=0pt,outer arc=0pt,
+}
+
+\urlstyle{same}
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{\raggedright\normalsize\bfseries}{}{0em}{}[\color{black}\titlerule]
+\titlespacing*{\section}{0pt}{6pt}{4.5pt}
+
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}}
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.2mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\small{#4}} \\
+        \textit{\small{#3}} &  \small{#2}\\
+    \end{tabular*}
+    \vspace{-1mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.25mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\small{#3}} \\
+        \small{\textit{#2}} & \small{#4}
+    \end{tabular*}
+    \vspace{-1.35mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{\raisebox{0.15ex}{\scriptsize\textbullet}}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=0.8mm,itemsep=0.35mm,topsep=0mm,parsep=0mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.2mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{justify}\begin{itemize}[leftmargin=2.3ex, rightmargin=0.5ex, labelsep=0.9mm,itemsep=0.25mm,topsep=0.3mm,parsep=0mm]\small}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-1mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\end{justify}\vspace{-1.15mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{1mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-5mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+\newcommand{\name}{Shivam}
+\newcommand{\course}{Bachelor of Engineering}
+\newcommand{\roll}{1RF23CS154}
+\newcommand{\phone}{8618719375}
+\newcommand{\emaila}{shivam.bgp@outlook.com}
+\newcommand{\portfolio}{https://justshivamm.in}
+
+\begin{document}
+\fontfamily{cmr}\selectfont
+\fontsize{10}{11.15}\selectfont
+
+%----------HEADING-----------------
+\noindent
+\begin{minipage}[c]{2.35cm}
+  \centering
+  \vspace{-2mm}
+  \IfFileExists{logo.png}{%
+    \includegraphics[width=1.9cm,clip]{logo.png}%
+  }{%
+    \fbox{\rule{0pt}{1.45cm}\rule{1.45cm}{0pt}}%
+  }
+\end{minipage}
+\hfill
+\begin{minipage}[c]{\dimexpr\linewidth-2.55cm\relax}
+\begin{tabularx}{\linewidth}{L r}
+  \textbf{\Large \name}
+  & {\raisebox{0.0\height}{\footnotesize \faPhone}\ +91-\phone} \\
+
+  {Roll No.: \roll}
+  & \href{mailto:\emaila}
+    {\raisebox{0.0\height}{\footnotesize \faEnvelope}\ {\emaila}} \\
+
+  \course
+  & \href{\portfolio}
+    {\raisebox{0.0\height}{\footnotesize \faGlobe}\ justshivamm.in} \\
+
+  {Computer Science and Engineering}
+  & \href{https://github.com/shivam2931120}
+    {\raisebox{0.0\height}{\footnotesize \faGithub}\ GitHub Profile} \\
+
+  {RV Institute of Technology and Management}
+  & \href{https://www.linkedin.com/in/shivam2931120/}
+    {\raisebox{0.0\height}{\footnotesize \faLinkedin}\ LinkedIn Profile}
+\end{tabularx}
+\end{minipage}
+\vspace{0mm}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {RV Institute of Technology and Management}{CGPA/Percentage: 8.892}
+      {Bachelor of Engineering, Computer Science and Engineering}{2027}
+  \resumeSubHeadingListEnd
+\vspace{1mm}
+
+%-----------PROJECTS-----------------
+\section{Experience \& Projects}
+\resumeSubHeadingListStart
+  \resumeProject
+    {\href{https://bb84-chat.justshivamm.in}{BB84 Quantum Messenger}}
+    {Secure real-time chat application with simulated quantum key distribution}
+    {November 2025}
+    {}
+
+  \resumeItemListStart
+    \item {Built a real-time messaging application using Python, Flask, Socket.IO, PostgreSQL, JavaScript, HTML5, and CSS3 with secure user communication workflows.}
+    \item {Implemented simulated BB84 quantum key distribution, XOR-based message encryption, and eavesdropping detection to demonstrate end-to-end secure chat and quantum cryptography concepts.}
+  \resumeItemListEnd
+
+  \resumeProject
+    {\href{https://attendify.justshivamm.in}{Attendify}}
+    {Full-stack attendance tracking PWA with geofencing and attendance analytics}
+    {2026}
+    {}
+
+  \resumeItemListStart
+    \item {Developed a progressive web application using Node.js, HTML, Tailwind CSS, Clerk Authentication, and Geolocation API for automated college attendance tracking.}
+    \item {Implemented geofencing-based auto-attendance, subject-wise attendance buffer analysis, what-if scenario simulation, retroactive attendance logging, and JSON, PDF, and CSV export features.}
+  \resumeItemListEnd
+
+  \resumeProject
+    {\href{https://themovie.justshivamm.in/}{TheMovie}}
+    {Movie and TV show discovery platform with authentication and personalized watchlists}
+    {October 2025}
+    {}
+
+  \resumeItemListStart
+    \item {Built a full-stack web application using React, Vite, Tailwind CSS, Clerk, OMDb API, and TMDb API for searching and managing movie and TV content.}
+    \item {Implemented user authentication, watchlist and watched-list management, advanced search and filtering, responsive UI, and multi-API integration for personalized content discovery.}
+  \resumeItemListEnd
+
+  \resumeProject
+    {\href{https://eventhub.justshivamm.in}{EventHub}}
+    {Secure event ticketing and QR-based check-in platform}
+    {2026}
+    {}
+
+  \resumeItemListStart
+    \item {Built a full-stack event management and ticketing platform using Next.js, React, PostgreSQL, and server-side validation for organizer, attendee, and staff workflows.}
+    \item {Implemented event publishing, ticket registration, secure QR ticket generation, payment flow tracking, staff check-in dashboards, duplicate scan prevention, and signed ticket token validation.}
+  \resumeItemListEnd
+
+  \resumeProject
+    {\href{https://editorial.justshivamm.in}{Editorial}}
+    {Real-time collaborative document workspace inspired by Google Docs}
+    {2026}
+    {}
+
+  \resumeItemListStart
+    \item {Developed a collaborative document platform using React, Node.js, PostgreSQL, and a rich text editor for shared writing, reviewing, and document organization workflows.}
+    \item {Implemented live multi-user editing, shared folders, comments, version history, document search, reusable templates, export flows, and structured workspace management.}
+  \resumeItemListEnd
+
+  \resumeProject
+    {\href{https://github.com/shivam2931120/Neo}{Neo}}
+    {Voice-controlled AI desktop assistant for automation and information retrieval}
+    {February 2025}
+    {}
+
+  \resumeItemListStart
+    \item {Developed a voice-controlled desktop assistant using Python, Tkinter, PyAutoGUI, Requests, Wikipedia API, and OpenWeather API.}
+    \item {Automated 50+ tasks including system control, web navigation, media playback, file handling, and real-time information retrieval through natural language voice commands.}
+  \resumeItemListEnd
+
+  \resumeProject
+    {\href{https://shikshan.justshivamm.in}{College Management System}}
+    {Role-based school and college management platform}
+    {August 2025}
+    {}
+
+  \resumeItemListStart
+    \item {Built a full-stack management system using Python, Flask, SQLAlchemy, PostgreSQL, SQLite, Bootstrap 5, Chart.js, Flask-Login, Flask-Migrate, and Vercel.}
+    \item {Implemented admin, teacher, and student portals with role-based access control, attendance management, marks entry, fee tracking, timetable scheduling, homework, announcements, and library records.}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-2mm}
+
+%-----------Technical skills-----------------
+\section{Technical Skills and Interests}
+ \begin{itemize}[leftmargin=0.05in, label={}, itemsep=0mm, topsep=0mm, parsep=0mm]
+    \small{\item{
+     \textbf{Languages}{: C, C++, JavaScript, Python, JAVA, HTML5, CSS3} \\
+     \textbf{Frameworks \& Tools}{: React.js, Node.js, Flask, Git, GitHub, VS Code, Linux CLI, Vercel} \\
+     \textbf{Design \& Prototyping}{: Figma, Stitch, Canva, UI/UX Design} \\
+     \textbf{Cloud/Databases}{: MySQL, MongoDB, PostgreSQL} \\
+     \textbf{Certifications}{: \href{https://www.coursera.org/account/accomplishments/verify/JFC9SCH27JDX}{Programming with JavaScript (Meta)}, \href{https://coursera.org/share/167e8f527bb5c0f0370a9c0a6611eb36}{React Basics (Meta)}, \href{https://coursera.org/share/c28f6bd6d924693667883b3babda25c6}{Node.js \& MongoDB (IBM)}} \\
+     \textbf{Coursework}{: Data Structures \& Algorithms, DBMS, Operating Systems, Web Development, Computer Networks, OOP, Machine Learning, Cloud Computing, Generative AI, UNIX System Programming} \\
+     \textbf{Areas of Interest}{: Artificial Intelligence, Machine Learning, Web Development, Mobile App Development, Data Science, Data Analytics, CI/CD Pipeline, System Design, Docker} \\
+    }}
+ \end{itemize}
+\vspace{-3mm}
+
+%-----------Extra-curricular activities-----------------
+\section{Extra-Curricular Activities}
+\begin{itemize}[leftmargin=2.2ex, labelsep=1mm, itemsep=0mm, topsep=0.2mm, parsep=0mm]
+  \small{\item {Contribute to \href{https://tolkiengateway.net/wiki/Main_Page}{Tolkien Gateway} by editing and updating content related to J.R.R. Tolkien's works for accuracy and consistency.}}
+\end{itemize}
+\vspace{-3mm}
+
+\end{document}

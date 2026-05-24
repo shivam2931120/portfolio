@@ -6,6 +6,7 @@ import { Download, ArrowRight, X, ChevronDown, Code2, Zap, Layers, Sparkles } fr
 import { personalInfo } from "@/lib/data";
 import { createPortal } from "react-dom";
 import Typewriter from "./Typewriter";
+import VisitorCounter from "./VisitorCounter";
 
 function getGreeting(): string {
     const hour = new Date().getHours();
@@ -156,11 +157,14 @@ export default function Hero() {
                             animate={{ opacity: 1, y: 0 }}
                             className="lg:col-span-3"
                         >
-                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card mb-3">
-                                <span className="text-xs text-[var(--text-muted)]">{greeting}</span>
-                                <span className="w-1 h-1 rounded-full bg-[var(--text-faint)]" />
-                                <span className="text-xs text-white font-medium font-mono">{localTime || "..."}</span>
-                                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                            <div className="flex flex-wrap items-center gap-2 mb-3">
+                                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card">
+                                    <span className="text-xs text-[var(--text-muted)]">{greeting}</span>
+                                    <span className="w-1 h-1 rounded-full bg-[var(--text-faint)]" />
+                                    <span className="text-xs text-white font-medium font-mono">{localTime || "..."}</span>
+                                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                                </div>
+                                <VisitorCounter />
                             </div>
 
                             <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-1.5">
