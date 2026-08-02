@@ -8,7 +8,7 @@ export const personalInfo = {
   github: "https://github.com/shivam2931120",
   githubUsername: "shivam2931120",
   leetcode: "https://leetcode.com/u/Shivam2931120/",
-  resume: "/shivam_resume.pdf",
+  resume: "https://drive.google.com/file/d/1O6JwA4_Au20Tom0m0liYf4T1nzDqwGSE/view",
 };
 
 

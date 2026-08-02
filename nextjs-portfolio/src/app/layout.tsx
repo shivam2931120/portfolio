@@ -1,55 +1,20 @@
 import type { Metadata } from "next";
-import { Outfit, Inter, Fira_Code } from "next/font/google";
+import { IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-const firaCode = Fira_Code({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
+const jetBrains = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-mono", display: "swap" });
+const plex = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-plex", display: "swap" });
 
 export const metadata: Metadata = {
   title: "Shivam",
-  description: "Full Stack Developer building performant, modern web applications. Systems mindset, clean UI, scalable architecture.",
-  keywords: ["Full Stack Developer", "Web Developer", "React", "Next.js", "Python", "Portfolio"],
-  authors: [{ name: "Shivam" }],
+  description: "Full Stack Developer building performant, modern web applications.",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
     apple: "/favicon.png",
   },
-  openGraph: {
-    title: "Shivam | Full Stack Developer",
-    description: "Full Stack Developer building performant, modern web applications.",
-    type: "website",
-  },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html
-      lang="en"
-      className={`${outfit.variable} ${inter.variable} ${firaCode.variable}`}
-    >
-      <body className="bg-[#0a0a0a] text-white antialiased">
-        {children}
-      </body>
-    </html>
-  );
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en" className={`${jetBrains.variable} ${plex.variable}`}><body>{children}</body></html>;
 }
