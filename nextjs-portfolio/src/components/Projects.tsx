@@ -140,14 +140,16 @@ function ProjectModal({ project, onClose }: { project: typeof projects[0]; onClo
                             <ExternalLink size={16} /> {link.label}
                         </a>
                     ))}
-                    <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="min-w-[130px] flex-1 btn-secondary justify-center"
-                    >
-                        <Github size={16} /> Source Code
-                    </a>
+                    {project.github && (
+                        <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="min-w-[130px] flex-1 btn-secondary justify-center"
+                        >
+                            <Github size={16} /> Source Code
+                        </a>
+                    )}
                 </div>
             </motion.div>
         </div>,
@@ -264,15 +266,17 @@ export default function Projects() {
                                                 {link.label}
                                             </a>
                                         ))}
-                                        <a
-                                            href={project.github}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium hover:bg-white/20 transition-colors"
-                                        >
-                                            <Github size={14} />
-                                            Code
-                                        </a>
+                                        {project.github && (
+                                            <a
+                                                href={project.github}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium hover:bg-white/20 transition-colors"
+                                            >
+                                                <Github size={14} />
+                                                Code
+                                            </a>
+                                        )}
                                     </div>
                                 </div>
 

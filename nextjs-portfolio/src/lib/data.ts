@@ -20,9 +20,7 @@ export const skills = [
   { name: "C++", icon: "/images/cpp.png" },
   { name: "Java", icon: "/images/java.png" },
   { name: "C", icon: "/images/c.png" },
-  { name: "Ruby", icon: "/images/ruby.png" },
   { name: "MySQL", icon: "/images/mysql.png" },
-  { name: "PHP", icon: "/images/php.png" },
   { name: "MongoDB", icon: "/images/mongo.svg" },
   { name: "JavaScript", icon: "/images/js.png" },
   { name: "Node.js", icon: "/images/nodejs.png" },
@@ -76,7 +74,7 @@ export type Project = {
   description: string;
   techStack: string[];
   link?: string;
-  github: string;
+  github?: string;
   links?: ProjectLink[];
 };
 
@@ -85,7 +83,7 @@ export const projects: Project[] = [
     title: "BB84 Quantum Messenger",
     tag: "Mini Project",
     description:
-      "A secure real-time messaging platform featuring end-to-end encryption via a simulated BB84 Quantum Key Distribution protocol. Key features include secure private and group chats, eavesdropping detection simulation, rich media sharing (files, images, voice notes), read receipts, and real-time user presence. Built with a Flask and Socket.IO backend for low-latency communication, coupled with a responsive, dynamic frontend using vanilla JavaScript and CSS.",
+      "College mini project: a secure real-time messaging platform featuring end-to-end encryption via a simulated BB84 Quantum Key Distribution protocol, private and group chats, eavesdropping detection, media sharing, read receipts, and live presence.",
 
     techStack: ["Python", "Flask", "JavaScript", "PostgreSQL"],
 
@@ -93,6 +91,16 @@ export const projects: Project[] = [
     github: "https://github.com/shivam2931120/bb8_messenger_app",
   },
 
+  {
+    title: "SecureVault",
+    description:
+      "A web application for securely storing and managing encrypted vault items. Built with a security-first architecture, encrypted persistence, authentication, password generation, and a focused desktop vault experience.",
+
+    techStack: ["Next.js", "React", "PostgreSQL"],
+
+    link: "https://securevault.justshivamm.in",
+    github: "https://github.com/shivam2931120/SecureVault",
+  },
   {
     title: "TheMovie",
     description:
@@ -168,15 +176,15 @@ export const projects: Project[] = [
         href: "https://github.com/shivam2931120/unix_mini_project/releases/tag/v1.0.0",
       },
       {
-        label: "Ubuntu DEB",
+        label: "Ubuntu package",
         href: "https://github.com/shivam2931120/unix_mini_project/releases/download/v1.0.0/unix-utility-suite_1.0.0_amd64.deb",
       },
       {
-        label: "Snap",
+        label: "Snap package",
         href: "https://github.com/shivam2931120/unix_mini_project/releases/download/v1.0.0/unix-utility-suite_1.0.0_amd64.snap",
       },
       {
-        label: "GNOME Ext",
+        label: "GNOME extension",
         href: "https://github.com/shivam2931120/unix_mini_project/releases/download/v1.0.0/unix-toolkit-launcher@shivam2931120.github.io.shell-extension.zip",
       },
       {
@@ -185,6 +193,17 @@ export const projects: Project[] = [
       },
     ],
     github: "https://github.com/shivam2931120/unix_mini_project.git",
+  },
+  {
+    title: "Nexus",
+    tag: "Ongoing",
+    description:
+      "An ongoing TeamOS workspace project bringing team communication, task management, documents, meetings, and shared workflows into one connected platform.",
+
+    techStack: ["Next.js", "React", "Java", "PostgreSQL"],
+
+    link: "https://nexus.justshivamm.in",
+    github: "https://github.com/shivam2931120/Nexus",
   },
 ];
 
@@ -201,6 +220,7 @@ export const techStackIcons: Record<string, string> = {
   Flask: "/images/flask.svg",
   PostgreSQL: "/images/postgresql.svg",
   "Next.js": "/next.svg",
+  Java: "/images/java.png",
   Clerk: "/images/clerk.svg",
   Bash: "/images/bash.svg",
   C: "/images/c.png",
