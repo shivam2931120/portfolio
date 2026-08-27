@@ -80,6 +80,40 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "Cross-Market Disclosure Analysis",
+    tag: "Major Project",
+    description:
+      "A full-stack financial research dashboard that compares US SEC and Indian NSE/BSE corporate disclosures. It combines FastAPI, Next.js, Supabase pgvector retrieval, Gemini embeddings, and Groq-powered extraction, sentiment, risk, ratio, and chat workflows across matched companies.",
+
+    techStack: ["Next.js", "Python", "PostgreSQL", "React"],
+
+    link: "https://major-project-new-plum.vercel.app",
+    github: "https://github.com/Hrudai-Nirmal/MajorProject-new",
+  },
+
+  {
+    title: "Hybrid CNN + Transformer Object Detection",
+    tag: "Major Project",
+    description:
+      "A lightweight autonomous-driving object-detection project using the KITTI dataset. It compares a CNN-only baseline with a CNN + Transformer detector, adds confidence-based refinement for uncertain detections, and evaluates both models with mAP@0.5.",
+
+    techStack: ["Python"],
+
+    github: "https://github.com/shivam2931120/MajorProject",
+  },
+
+  {
+    title: "Nexus",
+    description:
+      "A connected team workspace that brings communication, project and task management, documents, meetings, and shared workflows into one platform. Its Phase 1 vertical slice includes a Spring Boot modular backend, organization-scoped PostgreSQL data, JWT authentication, REST chat, WebSocket foundations, and a responsive Next.js shell.",
+
+    techStack: ["Next.js", "React", "Java", "PostgreSQL"],
+
+    link: "https://nexus-nine-drab-77.vercel.app",
+    github: "https://github.com/shivam2931120/Nexus",
+  },
+
+  {
     title: "BB84 Quantum Messenger",
     tag: "Mini Project",
     description:
@@ -193,17 +227,6 @@ export const projects: Project[] = [
       },
     ],
     github: "https://github.com/shivam2931120/unix_mini_project.git",
-  },
-  {
-    title: "Nexus",
-    tag: "Ongoing",
-    description:
-      "An ongoing TeamOS workspace project bringing team communication, task management, documents, meetings, and shared workflows into one connected platform.",
-
-    techStack: ["Next.js", "React", "Java", "PostgreSQL"],
-
-    link: "https://nexus.justshivamm.in",
-    github: "https://github.com/shivam2931120/Nexus",
   },
 ];
 
